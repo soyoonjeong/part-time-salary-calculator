@@ -1,7 +1,14 @@
 const addForm = document.querySelector("form");
+let schedules = [];
 
 function changeTime(time){
     return parseInt(time.substr(0,2))*60+parseInt(time.substr(3,2))
+}
+function saveSchedules(date){
+    const MONTH_ID = date.substr(0,7);
+    saveSd = schedules.filter((item)=>item.start.substr(0,7)===MONTH_ID);
+    console.log(saveSd);
+    localStorage.setItem(MONTH_ID, JSON.stringify(saveSd))
 }
 function addSubmitHandle(event){
     event.preventDefault();
@@ -20,5 +27,7 @@ function addSubmitHandle(event){
         end:`${date}T${endTime}`
     }
     calendarId.addEvent(eventData);
+    schedules.push(eventData);
+    saveSchedules(date);
 }
 addForm.addEventListener("submit",addSubmitHandle);
