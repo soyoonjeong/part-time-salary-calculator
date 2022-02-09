@@ -25,13 +25,17 @@
         <label for='instead'>대타</label>
         <button>Add</button>
       </form>
-      <form>
+      <form class="flex-box vertical">
+        <input id="startDate" type="date">
+        <span>~</span>
+        <input id="endDate" type="date">
         <input id='weekBreak' type='checkbox'>
         <label for='weekBreak'>주휴시간 적용</label>
         <input id='tax' type='checkbox'>
         <label for='tax'>세금 3.3%</label>
         <button>Calculate</button>
       </form>
+      <span id="totalMoney"></span>
     </div>
 
     <div id='calendar'></div>
@@ -40,5 +44,6 @@
     <script src='../fullcalendar/lib/main.js'></script>
     <script src='../js/calendar.js'></script>
     <script src='../js/add.js'></script>
+    <script src='../js/calculate.js'></script>
   </body>
 </html>

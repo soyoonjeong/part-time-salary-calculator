@@ -4,11 +4,13 @@ let schedules = [];
 function changeTime(time){
     return parseInt(time.substr(0,2))*60+parseInt(time.substr(3,2))
 }
-function saveSchedules(date){
+
+function saveSchedules(eventData, date){
     const MONTH_ID = date.substr(0,7);
-    saveSd = schedules.filter((item)=>item.start.substr(0,7)===MONTH_ID);
-    console.log(saveSd);
-    localStorage.setItem(MONTH_ID, JSON.stringify(saveSd))
+    schedules = JSON.parse(localStorage.getItem(MONTH_ID)); //updateSchedules
+    schedules.push(eventData);
+    console.log(schedules);
+    localStorage.setItem(MONTH_ID, JSON.stringify(schedules))
 }
 function addSubmitHandle(event){
     event.preventDefault();
@@ -17,17 +19,19 @@ function addSubmitHandle(event){
     const startTime = addForm.querySelector("#startTime").value;
     const endTime = addForm.querySelector("#endTime").value;
     const restTime = addForm.querySelector("#restTime").value;
+    const instead = addForm.querySelector("#instead").checked;
     let workTime = changeTime(endTime)-changeTime(startTime)-restTime;
     if(workTime<0){
         workTime = 1440+workTime;
     }
     const eventData={
-        title:`${workTime/60}시간`,
+        title:`${workTime/60}시간 - ${workTime/60*money}원`,
         start: `${date}T${startTime}`,
-        end:`${date}T${endTime}`
+        end:`${date}T${endTime}`,
+        money: workTime/60 * money,
+        instead:instead
     }
     calendarId.addEvent(eventData);
-    schedules.push(eventData);
-    saveSchedules(date);
+    saveSchedules(eventData, date);
 }
 addForm.addEventListener("submit",addSubmitHandle);
