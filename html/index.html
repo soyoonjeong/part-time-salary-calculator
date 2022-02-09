@@ -4,22 +4,41 @@
     <meta charset='utf-8' />
     <link href='../fullcalendar/lib/main.css' rel='stylesheet' />
     <link href="../css/styles.css" rel="stylesheet"/>
-    <script src='../fullcalendar/lib/main.js'></script>
-    <script src='../js/app.js'></script>
+    
+    
     
   </head>
   <body class='flex-box'>
     <div>
       <form class="flex-box vertical">
-        <input id='moneyPerHour' type="number" placeholder="시급">
-        <input id='date' type='date' placeholder="날짜">
-        <input id='startTime' type='time' placeholder="시작 시각">
-        <input id='endTime' type='time' placeholder="종료 시각">
-        <button id='submit'>Calculate</button>
+        <label for="moneyPerHour">시급(원)</label>
+        <input id='moneyPerHour' type="number">
+        <label for="date">날짜</label>
+        <input id='date' type='date'>
+        <label for="startTime">시작시각</label>
+        <input id='startTime' type='time'>
+        <label for="endTime">종료시각</label>
+        <input id='endTime' type='time'>
+        <label for="restTime">휴게시간(분)</label>
+        <input id='restTime' type='number'>
+        <input id='instead' type='checkbox'>
+        <label for='instead'>대타</label>
+        <button>Add</button>
       </form>
-      <div id='explain'></div>
+      <form>
+        <input id='weekBreak' type='checkbox'>
+        <label for='weekBreak'>주휴시간 적용</label>
+        <input id='tax' type='checkbox'>
+        <label for='tax'>세금 3.3%</label>
+        <button>Calculate</button>
+      </form>
     </div>
 
     <div id='calendar'></div>
+
+
+    <script src='../fullcalendar/lib/main.js'></script>
+    <script src='../js/calendar.js'></script>
+    <script src='../js/add.js'></script>
   </body>
 </html>
