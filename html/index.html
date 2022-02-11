@@ -27,13 +27,25 @@
       </form>
       <br>
       <form id="calculateForm" class="flex-box vertical">
-        <input id="startDate" type="date">
-        <span>~</span>
-        <input id="endDate" type="date">
-        <input id='weekBreak' type='checkbox'>
+        <span>계산하고 싶은 월 선택</span>
+        <select name="month">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+          <option>7</option>
+          <option>8</option>
+          <option>9</option>
+          <option>10</option>
+          <option>11</option>
+          <option>12</option>
+        </select>
         <label for='weekBreak'>주휴시간 적용</label>
-        <input id='tax' type='checkbox'>
+        <input id='weekBreak' type='checkbox'>
         <label for='tax'>세금 3.3%</label>
+        <input id='tax' type='checkbox'>
         <button>Calculate</button>
       </form>
       <span id="totalMoney"></span>
