@@ -12252,7 +12252,7 @@ var FullCalendar = (function (exports) {
     function renderInnerContent$2(innerProps) {
         return (createElement(Fragment, null,
             createElement("div", { className: "fc-daygrid-event-dot", style: { borderColor: innerProps.borderColor || innerProps.backgroundColor } }),
-            innerProps.timeText && (createElement("div", { className: "fc-event-time" }, innerProps.timeText)),
+            innerProps.timeText &&
             createElement("div", { className: "fc-event-title" }, innerProps.event.title || createElement(Fragment, null, "\u00A0"))));
     }
 
