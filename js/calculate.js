@@ -1,11 +1,9 @@
-const calForm = document.querySelector("form:nth-child(2)");
-const calbutton = calForm.querySelector("button");
+const calForm = document.querySelector("#calculateForm");
 function sliceDate(date){
-    return date.substr(0,7);
+    return date.substr(0,7); //년도, 월까지만 슬라이스 => ID
 }
 function searchLocalStorage(ID, start, end){
     const savedSd = localStorage.getItem(ID);
-    console.log(ID);
     if(savedSd!==null){
         parsedSd = JSON.parse(savedSd);
         parsedSd.forEach((element)=>{
@@ -14,11 +12,21 @@ function searchLocalStorage(ID, start, end){
             const endDate = new Date(end);
             console.log(date);
             if(startDate<=date && date<=endDate){
-                console.log('OHYEAH');
                 const totalMoney = parseInt(localStorage.getItem("totalMoney"));
                 localStorage.setItem("totalMoney",totalMoney+element.money);
             }
         });
+    }
+}
+let weekMoney = 0;
+function weekBreakCalculate(ID){
+    for(const i = 1; i<=31; i++){
+        i = String(i).padStart(2,'0');
+        const date = `${ID}-${i}`;
+        const day = new Date(date).getDay();
+        if(day==6){
+            weekMoney =0;
+        }
     }
 }
 function calculate(event){
@@ -31,7 +39,6 @@ function calculate(event){
         searchLocalStorage(sliceDate(endDate), startDate, endDate);
     }
     const totalMoney = document.querySelector("#totalMoney");
-    totalMoney.classList.remove("hidden");
     totalMoney.innerText = `${localStorage.getItem("totalMoney")}원`;
 }
 calForm.addEventListener("submit",calculate);
