@@ -5,7 +5,6 @@ function changeTime(time){
     return parseInt(time.substr(0,2))*60+parseInt(time.substr(3,2))
 }
 function extractDate(event){
-    console.log(event.title);
     return parseInt(event.start.substr(8,2));
 }
 function saveSchedules(eventData, date){
@@ -59,6 +58,7 @@ function addSubmitHandle(event){
         workTime = 1440+workTime;
     }
     const eventData={
+        time : workTime/60,
         title:`${workTime/60}시간 - ${workTime/60*money}원`,
         start: `${date}T${startTime}`,
         end:`${date}T${endTime}`,
